@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
 
@@ -101,7 +102,8 @@ public class GoogleCalculatorHCPage extends AbstractPage {
         switchToFrameByNameOrId(nameChildFrame);
         clickButton(buttonEmailEstimate);
         waitElementToClick(xpathActivationFieldAddMail);
-        while (findWebElement(buttonPushMessage).getAttribute(nameAttribute) != null) {
+        inputText(xpathActivationFieldAddMail, mail);
+        if (driver.findElements(By.xpath(xpathActivationFieldAddMail)).size() == 0) {
             inputText(xpathActivationFieldAddMail, mail);
         }
         waitElementToClick(buttonPushMessage);
