@@ -74,13 +74,13 @@ public abstract class AbstractPage {
         return this;
     }
 
-    public ArrayList<String> getWindowCalculator() {
+    public ArrayList<String> getWindow() {
         ArrayList<String> windowsPages = new ArrayList<>(driver.getWindowHandles());
         return windowsPages;
     }
 
     public AbstractPage switchWindow(int indexWindow) {
-        driver.switchTo().window(getWindowCalculator().get(indexWindow));
+        driver.switchTo().window(getWindow().get(indexWindow));
         return this;
     }
 }

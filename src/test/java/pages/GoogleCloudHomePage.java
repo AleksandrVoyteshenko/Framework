@@ -5,18 +5,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class GoogleCloudHomeHCPage extends AbstractPage {
+public class GoogleCloudHomePage extends AbstractPage {
 
     @FindBy(name = "q")
     private WebElement buttonSearch;
 
-    public GoogleCloudHomeHCPage(WebDriver driver) {
+    public GoogleCloudHomePage(WebDriver driver) {
         super(driver);
     }
 
-    public GoogleCloudResultSearchHCPage searchOfQuery(String search) {
+    public GoogleCloudResultSearchPage searchOfQuery(String search) {
         buttonSearch.click();
         buttonSearch.sendKeys(search, Keys.ENTER);
-        return new GoogleCloudResultSearchHCPage(driver);
+        return new GoogleCloudResultSearchPage(driver);
     }
 }

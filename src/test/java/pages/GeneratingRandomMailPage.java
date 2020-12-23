@@ -5,7 +5,7 @@ import org.testng.Assert;
 
 public class GeneratingRandomMailPage extends AbstractPage {
 
-    private String buttonLookMessage = "//input[@value = 'Проверить почту']";
+    private String buttonLookMessage = "//*[@id='libcop']/following-sibling::input";
     private String messageIndicator = "//*[@id='nbmail']";
     private String valueNumberMessage = "1 mail";
     private String buttonRefreshMessage = "//*[@id='lrefr']";

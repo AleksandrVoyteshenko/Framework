@@ -9,6 +9,7 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import driver.DriverSingleton;
+import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
