@@ -1,6 +1,6 @@
 package test;
 
-import model.VirtualMachine;
+import businessobjects.VirtualMachine;
 import org.testng.annotations.Test;
 import pages.EmailYourEstimatePopUpPage;
 import pages.GeneratingRandomMailPage;
@@ -33,7 +33,7 @@ public class HardCoreTest extends BaseTest {
 
     @Test
     public void checkingCalculatorData() {
-        VirtualMachine vm = CreatorVM.withCredentialsFromProperty();
+        VirtualMachine vm = CreatorVM.getVirtualMachineWithDataFromProperties();
         GoogleCloudHomePage googleCloudHomeHCPage = new GoogleCloudHomePage(driver);
         googleCloudHomeHCPage.openPage(URL_HOME_PAGE);
         GoogleCloudResultSearchPage googleCloudResultSearchHCPage = googleCloudHomeHCPage.searchOfQuery(search);

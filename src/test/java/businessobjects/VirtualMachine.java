@@ -1,6 +1,4 @@
-package model;
-
-import java.util.Objects;
+package businessobjects;
 
 public class VirtualMachine {
 
@@ -87,25 +85,5 @@ public class VirtualMachine {
 
     public void setDesiredResultCommitmentTerm(String desiredResultCommitmentTerm) {
         this.desiredResultCommitmentTerm = desiredResultCommitmentTerm;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        VirtualMachine that = (VirtualMachine) o;
-        return Objects.equals(valueInstance, that.valueInstance) &&
-                Objects.equals(valueOperatingSystem, that.valueOperatingSystem) &&
-                Objects.equals(desiredResultVMClass, that.desiredResultVMClass) &&
-                Objects.equals(valueSeries, that.valueSeries) &&
-                Objects.equals(desiredResultInstanceType, that.desiredResultInstanceType) &&
-                Objects.equals(desiredResultLocalSSD, that.desiredResultLocalSSD) &&
-                Objects.equals(desiredResultRegion, that.desiredResultRegion) &&
-                Objects.equals(desiredResultCommitmentTerm, that.desiredResultCommitmentTerm);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(valueInstance, valueOperatingSystem, desiredResultVMClass, valueSeries, desiredResultInstanceType, desiredResultLocalSSD, desiredResultRegion, desiredResultCommitmentTerm);
     }
 }
