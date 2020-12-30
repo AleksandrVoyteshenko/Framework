@@ -8,7 +8,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import driver.DriverSingleton;
+import driver.Driver;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +26,11 @@ public class TestListener implements ITestListener {
     }
 
     public void onTestFailure(ITestResult iTestResult) {
-        saveScreenshot();
+        try {
+            saveScreenshot();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void onTestSkipped(ITestResult iTestResult) {
@@ -41,8 +45,8 @@ public class TestListener implements ITestListener {
     public void onFinish(ITestContext iTestContext) {
     }
 
-    private void saveScreenshot(){
-        File screenCapture = ((TakesScreenshot) DriverSingleton
+    private void saveScreenshot() throws IOException {
+        File screenCapture = ((TakesScreenshot) Driver
                 .getDriver())
                 .getScreenshotAs(OutputType.FILE);
         try {

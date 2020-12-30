@@ -1,6 +1,6 @@
 package service;
 
-import model.VirtualMachine;
+import businessobjects.VirtualMachine;
 
 public class CreatorVM {
 
@@ -13,7 +13,7 @@ public class CreatorVM {
     private static final String desiredResultRegion = "testdata.desiredResultRegion";
     private static final String desiredResultCommitmentTerm = "testdata.desiredResultCommitmentTerm";
 
-    public static VirtualMachine withCredentialsFromProperty() {
+    public static VirtualMachine getVirtualMachineWithDataFromProperties() {
         return new VirtualMachine(TestDataReader.getTestData(valueInstance), TestDataReader.getTestData(valueOperatingSystem),
                         TestDataReader.getTestData(desiredResultVMClass), TestDataReader.getTestData(valueSeries),
                         TestDataReader.getTestData(desiredResultInstanceType), TestDataReader.getTestData(desiredResultLocalSSD),
