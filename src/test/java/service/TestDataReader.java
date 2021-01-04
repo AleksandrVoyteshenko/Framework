@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 public class TestDataReader {
 
+    private static String pathFileWithKeysProperties = "src/test/resources/config.properties";
     private static ResourceBundle resourceBundle;
 
     static {
@@ -26,7 +27,7 @@ public class TestDataReader {
         Properties property = new Properties();
         String dataTest = null;
         if (System.getProperty(data) == null) {
-            env = new FileInputStream("src/test/resources/config.properties");
+            env = new FileInputStream(pathFileWithKeysProperties);
             property.load(env);
             dataTest = property.getProperty(data);
         } else { dataTest = System.getProperty(data);

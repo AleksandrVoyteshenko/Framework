@@ -15,10 +15,17 @@ public class Driver {
 
     public static WebDriver getDriver() throws IOException {
         if (driver == null) {
-            if (System.getProperty("browser") == null) {
-               setupDriverWithFileProperties();
-            } else {
-                setupDriverWithSystemProperties();
+            switch (TestDataReader.getData("browser")) {
+                case "firefox": {
+                    WebDriverManager.firefoxdriver().setup();
+                    driver = new FirefoxDriver();
+                    break;
+                }
+                case "chrome": {
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver();
+                    break;
+                }
             }
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
@@ -29,37 +36,5 @@ public class Driver {
     public static void closeDriver(){
         driver.quit();
         driver = null;
-    }
-
-    public static WebDriver setupDriverWithSystemProperties() {
-        switch (System.getProperty("browser")) {
-            case "firefox": {
-                WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
-                break;
-            }
-            case "chrome": {
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
-                break;
-            }
-        }
-        return driver;
-    }
-
-    public static WebDriver setupDriverWithFileProperties() throws IOException {
-        switch (TestDataReader.getData("browser")) {
-            case "firefox": {
-                WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
-                break;
-            }
-            case "chrome": {
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
-                break;
-            }
-        }
-        return driver;
     }
 }
