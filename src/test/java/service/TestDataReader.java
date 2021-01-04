@@ -22,11 +22,15 @@ public class TestDataReader {
     }
 
     public static String getData(String data) throws IOException {
-        FileInputStream env;
+        FileInputStream env = null;
         Properties property = new Properties();
-        env = new FileInputStream("src/test/resources/config.properties");
-        property.load(env);
-        String dataTest = property.getProperty(data);
+        String dataTest = null;
+        if (System.getProperty(data) == null) {
+            env = new FileInputStream("src/test/resources/config.properties");
+            property.load(env);
+            dataTest = property.getProperty(data);
+        } else { dataTest = System.getProperty(data);
+        }
         return dataTest;
     }
 }
