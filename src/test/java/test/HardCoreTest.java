@@ -33,7 +33,7 @@ public class HardCoreTest extends BaseTest {
 
     @Test
     public void checkingCalculatorData() {
-        VirtualMachine vm = CreatorVM.getVirtualMachineWithDataFromProperties();
+        VirtualMachine vm = CreatorVM.getVirtualMachineWithAllParameters();
         GoogleCloudHomePage googleCloudHomeHCPage = new GoogleCloudHomePage(driver);
         googleCloudHomeHCPage.openPage(URL_HOME_PAGE);
         GoogleCloudResultSearchPage googleCloudResultSearchHCPage = googleCloudHomeHCPage.searchOfQuery(search);

@@ -6,14 +6,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import service.TestDataReader;
 
-import java.io.IOException;
 import java.time.Duration;
 
 public class Driver {
 
     private static WebDriver driver;
 
-    public static WebDriver getDriver() throws IOException {
+    public static WebDriver getDriver() {
         if (driver == null) {
             switch (TestDataReader.getData("browser")) {
                 case "firefox": {
