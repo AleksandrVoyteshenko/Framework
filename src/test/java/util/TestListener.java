@@ -26,11 +26,7 @@ public class TestListener implements ITestListener {
     }
 
     public void onTestFailure(ITestResult iTestResult) {
-        try {
             saveScreenshot();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void onTestSkipped(ITestResult iTestResult) {
@@ -45,7 +41,7 @@ public class TestListener implements ITestListener {
     public void onFinish(ITestContext iTestContext) {
     }
 
-    private void saveScreenshot() throws IOException {
+    private void saveScreenshot() {
         File screenCapture = ((TakesScreenshot) Driver
                 .getDriver())
                 .getScreenshotAs(OutputType.FILE);

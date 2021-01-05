@@ -15,7 +15,7 @@ abstract class BaseTest {
     protected WebDriver driver;
 
     @BeforeMethod (alwaysRun = true)
-    public void openBrowser() throws IOException {
+    public void openBrowser() {
         driver = Driver.getDriver();
     }
 

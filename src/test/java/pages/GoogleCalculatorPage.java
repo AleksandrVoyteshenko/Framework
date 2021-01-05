@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
 
@@ -72,17 +73,20 @@ public class GoogleCalculatorPage extends AbstractPage {
 
     public GoogleCalculatorPage selectDatacenter(String desiredResultRegion) {
         selectValueFromDropdown(datacenterDropdown);
+        scrollToElement(String.format(valueDropdown, desiredResultRegion));
         waitElementToClick(String.format(valueDropdown, desiredResultRegion));
         return this;
     }
 
     public GoogleCalculatorPage selectCommitedUsage(String desiredResultCommitmentTerm) {
         selectValueFromDropdown(committedUsageDropdown);
+        scrollToElement(String.format(valueDropdown, desiredResultCommitmentTerm));
         waitElementToClick(String.format(valueDropdown, desiredResultCommitmentTerm));
         return this;
     }
 
     public GoogleCalculatorPage clickAddToEstimateButton() {
+        scrollToElement(addToEstimateButton);
         clickButton(addToEstimateButton);
         return this;
     }

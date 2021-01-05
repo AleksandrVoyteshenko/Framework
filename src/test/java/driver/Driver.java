@@ -6,23 +6,24 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import service.TestDataReader;
 
-import java.io.IOException;
 import java.time.Duration;
 
 public class Driver {
 
     private static WebDriver driver;
 
-    public static WebDriver getDriver() throws IOException {
-        if (driver == null){
-            switch (TestDataReader.getData("browser")){
+    public static WebDriver getDriver() {
+        if (driver == null) {
+            switch (TestDataReader.getData("browser")) {
                 case "firefox": {
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
+                    break;
                 }
                 case "chrome": {
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
+                    break;
                 }
             }
             driver.manage().window().maximize();

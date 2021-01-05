@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -81,6 +82,11 @@ public abstract class AbstractPage {
 
     public AbstractPage switchWindow(int indexWindow) {
         driver.switchTo().window(getWindow().get(indexWindow));
+        return this;
+    }
+
+    public AbstractPage scrollToElement(String locator) {
+        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(false);", findWebElement(locator));
         return this;
     }
 }

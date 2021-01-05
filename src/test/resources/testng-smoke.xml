@@ -2,8 +2,8 @@
 
 <suite name="Test" verbose="1" >
     <test name="HardCore"   >
-        <packages>
-            <package name="test.HardCoreTest" />
-        </packages>
+        <classes>
+            <class name="test.HardCoreTest" />
+        </classes>
     </test>
 </suite>
