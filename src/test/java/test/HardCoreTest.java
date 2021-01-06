@@ -9,8 +9,6 @@ import pages.GoogleCalculatorPage;
 import pages.GoogleCloudHomePage;
 import pages.GoogleCloudResultSearchPage;
 import service.CreatorVM;
-import service.CreatorVMthroughDataProvider;
-import service.CreatorVMthroughDataProvider2;
 
 /**
  * Задача - построить фреймворк для автоматизации Hardcore  задания из курса WebDriver.
@@ -68,8 +66,25 @@ public class HardCoreTest extends BaseTest {
 
     @DataProvider(name = "data-provider")
     public static Object[] dataProviderMethod() {
-        VirtualMachine virtualMachineAqa = CreatorVMthroughDataProvider.getVirtualMachineWithSelectedParametersAqa();
-        VirtualMachine virtualMachineDev = CreatorVMthroughDataProvider2.getVirtualMachineWithSelectedParametersDev();
+        VirtualMachine virtualMachineAqa = new VirtualMachine();
+        virtualMachineAqa.setValueInstance("4");
+        virtualMachineAqa.setValueOperatingSystem("Free: Debian, CentOS, CoreOS, Ubuntu, or other User Provided OS");
+        virtualMachineAqa.setDesiredResultVMClass("Regular");
+        virtualMachineAqa.setValueSeries("n1");
+        virtualMachineAqa.setDesiredResultInstanceType("n1-standard-8");
+        virtualMachineAqa.setDesiredResultLocalSSD("2x375");
+        virtualMachineAqa.setDesiredResultRegion("Frankfurt");
+        virtualMachineAqa.setDesiredResultCommitmentTerm("1 Year");
+
+        VirtualMachine virtualMachineDev = new VirtualMachine();
+        virtualMachineDev.setValueInstance("1");
+        virtualMachineDev.setValueOperatingSystem("Free: Debian, CentOS, CoreOS, Ubuntu, or other User Provided OS");
+        virtualMachineDev.setDesiredResultVMClass("Regular");
+        virtualMachineDev.setValueSeries("n2");
+        virtualMachineDev.setDesiredResultInstanceType("n2-standard-8");
+        virtualMachineDev.setDesiredResultLocalSSD("1x375");
+        virtualMachineDev.setDesiredResultRegion("Iowa");
+        virtualMachineDev.setDesiredResultCommitmentTerm("1 Year");
         return new Object[][] { {virtualMachineAqa},
                 {virtualMachineDev} };
     }
