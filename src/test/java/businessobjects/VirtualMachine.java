@@ -23,6 +23,9 @@ public class VirtualMachine {
         this.desiredResultCommitmentTerm = desiredResultCommitmentTerm;
     }
 
+    public VirtualMachine() {
+    }
+
     public String getValueInstance() {
         return valueInstance;
     }

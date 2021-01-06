@@ -1,6 +1,7 @@
 package test;
 
 import businessobjects.VirtualMachine;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.EmailYourEstimatePopUpPage;
 import pages.GeneratingRandomMailPage;
@@ -8,6 +9,8 @@ import pages.GoogleCalculatorPage;
 import pages.GoogleCloudHomePage;
 import pages.GoogleCloudResultSearchPage;
 import service.CreatorVM;
+import service.CreatorVMthroughDataProvider;
+import service.CreatorVMthroughDataProvider2;
 
 /**
  * Задача - построить фреймворк для автоматизации Hardcore  задания из курса WebDriver.
@@ -48,6 +51,45 @@ public class HardCoreTest extends BaseTest {
                 .selectLocalSSD(vm.getDesiredResultLocalSSD())
                 .selectDatacenter(vm.getDesiredResultRegion())
                 .selectCommitedUsage(vm.getDesiredResultCommitmentTerm())
+                .clickAddToEstimateButton();
+        String sumInCalculator = googleCalculatorHCPage.getRentalAmountReceivedInCalculator();
+        GeneratingRandomMailPage generatingRandomMailPage = googleCalculatorHCPage.openNewWindow();
+        String mail = generatingRandomMailPage.generatingAndCopyMailAddress(URL_MAIL);
+        googleCalculatorHCPage
+                .openPopUp();
+        EmailYourEstimatePopUpPage emailYourEstimatePage = new EmailYourEstimatePopUpPage(driver);
+        emailYourEstimatePage
+                .addMailAddress(mail, nameValueField);
+        String sumInMessage = generatingRandomMailPage
+                .openMessage()
+                .getRentalAmountIndicatedInTheEmail();
+        generatingRandomMailPage.validateSumAmountToMessage(sumInCalculator, sumInMessage);
+    }
+
+    @DataProvider(name = "data-provider")
+    public static Object[] dataProviderMethod() {
+        VirtualMachine virtualMachineAqa = CreatorVMthroughDataProvider.getVirtualMachineWithSelectedParametersAqa();
+        VirtualMachine virtualMachineDev = CreatorVMthroughDataProvider2.getVirtualMachineWithSelectedParametersDev();
+        return new Object[][] { {virtualMachineAqa},
+                {virtualMachineDev} };
+    }
+
+    @Test(dataProvider = "data-provider")
+    public void checkingCalculatorDataWithDP(VirtualMachine virtualMachine) {
+        GoogleCloudHomePage googleCloudHomeHCPage = new GoogleCloudHomePage(driver);
+        googleCloudHomeHCPage.openPage(URL_HOME_PAGE);
+        GoogleCloudResultSearchPage googleCloudResultSearchHCPage = googleCloudHomeHCPage.searchOfQuery(search);
+        GoogleCalculatorPage googleCalculatorHCPage = googleCloudResultSearchHCPage.openGoogleCalculator();
+        googleCalculatorHCPage
+                .activationSection()
+                .selectInstances(virtualMachine.getValueInstance())
+                .selectOperationSystem(virtualMachine.getValueOperatingSystem())
+                .selectMachineClass(virtualMachine.getDesiredResultVMClass())
+                .selectSeries(virtualMachine.getValueSeries())
+                .selectMachineType(virtualMachine.getDesiredResultInstanceType())
+                .selectLocalSSD(virtualMachine.getDesiredResultLocalSSD())
+                .selectDatacenter(virtualMachine.getDesiredResultRegion())
+                .selectCommitedUsage(virtualMachine.getDesiredResultCommitmentTerm())
                 .clickAddToEstimateButton();
         String sumInCalculator = googleCalculatorHCPage.getRentalAmountReceivedInCalculator();
         GeneratingRandomMailPage generatingRandomMailPage = googleCalculatorHCPage.openNewWindow();
