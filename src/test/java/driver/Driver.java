@@ -7,6 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import service.TestDataReader;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class Driver {
 

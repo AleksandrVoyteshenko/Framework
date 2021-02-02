@@ -54,6 +54,7 @@ public class GoogleCalculatorPage extends AbstractPage {
     }
 
     public GoogleCalculatorPage selectSeries(String valueSeries) {
+        scrollToElement(addToEstimateButton);
         selectValueFromDropdown(seriesDropdown);
         waitElementToClick(String.format(valueDropdown, valueSeries.toUpperCase()));
         return this;
